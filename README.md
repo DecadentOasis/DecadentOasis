@@ -10,3 +10,7 @@ The way this works is the code under [src/](https://github.com/robot-head/Decade
 The [DecadentOasisProcessingSketch folder](https://github.com/robot-head/DecadentOasis/tree/master/DecadentOasisProcessingSketch) contains the processing sketch with 0.01% remaining code.  I tried to put the rest of this code inside something that extends from PApplet, but I was geting all kinds of OpenGL errors :(
 
 Read up on the LX framework and [javadoc](http://heronarts.com/lx/api/index.html?heronarts/lx/package-summary.html)/[source](https://github.com/heronarts/LX)
+
+***
+
+MIT Licensed, but Heronarts.LX is not Open Source.  We have permission from Mark Slee to use it for our art project in a non-commercial fashion.
