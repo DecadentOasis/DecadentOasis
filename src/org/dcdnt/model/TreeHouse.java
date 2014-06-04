@@ -1,4 +1,4 @@
-package com.decadentoasis.model;
+package org.dcdnt.model;
 
 import heronarts.lx.model.LXModel;
 

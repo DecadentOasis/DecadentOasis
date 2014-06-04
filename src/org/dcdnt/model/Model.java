@@ -1,4 +1,4 @@
-package com.decadentoasis.model;
+package org.dcdnt.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,7 +15,7 @@ public class Model extends LXModel {
 	public final PalmTreeArtCar palmTreeArtCar;
 	public final ChineseJunkArtCar chineseJunkArtCar;
 
-	Model() {
+	public Model() {
 		super(new Fixture());
 		Fixture f = (Fixture) this.fixtures.get(0);
 		this.trees = Collections.unmodifiableList(f.trees);

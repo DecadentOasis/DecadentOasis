@@ -5,8 +5,8 @@ import ddf.minim.analysis.*;
 import ddf.minim.ugens.*;
 import ddf.minim.effects.*;
 
-import com.decadentoasis.DecadentOasisShow;
-import com.decadentoasis.model.Model;
+import org.dcdnt.DecadentOasisShow;
+import org.dcdnt.model.Model;
 import heronarts.lx.LX;
 
 LX lx;

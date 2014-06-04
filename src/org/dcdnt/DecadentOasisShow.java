@@ -1,13 +1,12 @@
-package com.decadentoasis;
+package org.dcdnt;
 
 import heronarts.lx.LX;
 import heronarts.lx.parameter.BasicParameter;
-import heronarts.lx.parameter.LXParameter;
 import heronarts.lx.pattern.LXPattern;
 import heronarts.lx.transition.DissolveTransition;
 import heronarts.lx.transition.LXTransition;
 
-import com.decadentoasis.patterns.*;
+import org.dcdnt.patterns.SolidColor;
 
 public class DecadentOasisShow {
 
