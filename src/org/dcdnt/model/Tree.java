@@ -36,6 +36,8 @@ public class Tree extends LXModel {
 	 */
 	public final List<LEDBar> ledBars;
 
+	public final List<TreeArm> treeArms;
+
 	Tree(TreeType type, float x, float y, float z, String pusherMac, int stripNo) {
 		super(new Fixture(type, x, y, z, pusherMac, stripNo));
 		Fixture f = (Fixture) this.fixtures.get(0);
@@ -43,64 +45,82 @@ public class Tree extends LXModel {
 		this.y = y;
 		this.z = z;
 		this.ledBars = Collections.unmodifiableList(f.ledBars);
+		this.treeArms = Collections.unmodifiableList(f.treeArms);
 	}
 
 	private static class Fixture extends LXAbstractFixture {
 		final List<LEDBar> ledBars;
+		final List<TreeArm> treeArms;
 
 		Fixture(TreeType type, float x, float y, float z, String pusherMac,
 				int stripNo) {
 			LXTransform transform = new LXTransform();
 			transform.translate(x, y, z);
 			this.ledBars = new ArrayList<LEDBar>();
+			this.treeArms = new ArrayList<TreeArm>();
 			int pixelNo = 0;
 			float spaceBetweenLeds;
 			int armLength;
 			switch (type) {
 			case SIX_ARM:
 				armLength = 100;
-				spaceBetweenLeds = armLength / 4;
+				spaceBetweenLeds = (float) (armLength / 4.0);
 				for (int armNumber = 0; armNumber < 6; armNumber++) {
-					this.ledBars.add(new LEDBar(transform,
-							spaceBetweenLeds * 1, 360 / armNumber, pusherMac,
-							stripNo, pixelNo++));
-					this.ledBars.add(new LEDBar(transform,
-							spaceBetweenLeds * 3, 360 / armNumber, pusherMac,
-							stripNo, pixelNo++));
-					this.ledBars.add(new LEDBar(transform,
-							spaceBetweenLeds * 2, 360 / armNumber, pusherMac,
-							stripNo, pixelNo++));
-					this.ledBars.add(new LEDBar(transform,
-							spaceBetweenLeds * 0, 360 / armNumber, pusherMac,
-							stripNo, pixelNo++));
+					ArrayList<LEDBar> thisArmsBars = new ArrayList<LEDBar>();
+					float theta = (float) (360.0 / armNumber);
+					thisArmsBars.add(new LEDBar(transform,
+							spaceBetweenLeds * 1, theta, pusherMac, stripNo,
+							pixelNo++));
+					thisArmsBars.add(new LEDBar(transform,
+							spaceBetweenLeds * 3, theta, pusherMac, stripNo,
+							pixelNo++));
+					thisArmsBars.add(new LEDBar(transform,
+							spaceBetweenLeds * 2, theta, pusherMac, stripNo,
+							pixelNo++));
+					thisArmsBars.add(new LEDBar(transform,
+							spaceBetweenLeds * 0, theta, pusherMac, stripNo,
+							pixelNo++));
+					this.ledBars.addAll(thisArmsBars);
+					this.treeArms.add(new TreeArm(armNumber, thisArmsBars,
+							theta));
 				}
 
 				break;
 			case EIGHT_ARM:
 				armLength = 100;
-				spaceBetweenLeds = armLength / 3;
+				spaceBetweenLeds = (float) (armLength / 3.0);
 				for (int armNumber = 0; armNumber < 8; armNumber++) {
-					this.ledBars.add(new LEDBar(transform,
+					ArrayList<LEDBar> thisArmsBars = new ArrayList<LEDBar>();
+					float theta = (float) (360.0 / armNumber);
+					thisArmsBars.add(new LEDBar(transform,
 							spaceBetweenLeds * 0, 360 / armNumber, pusherMac,
 							stripNo, pixelNo++));
-					this.ledBars.add(new LEDBar(transform,
+					thisArmsBars.add(new LEDBar(transform,
 							spaceBetweenLeds * 2, 360 / armNumber, pusherMac,
 							stripNo, pixelNo++));
-					this.ledBars.add(new LEDBar(transform,
+					thisArmsBars.add(new LEDBar(transform,
 							spaceBetweenLeds * 1, 360 / armNumber, pusherMac,
 							stripNo, pixelNo++));
+					this.ledBars.addAll(thisArmsBars);
+					this.treeArms.add(new TreeArm(armNumber, thisArmsBars,
+							theta));
 				}
 				break;
 			case TWELVE_ARM:
 				armLength = 100;
-				spaceBetweenLeds = armLength / 2;
+				spaceBetweenLeds = (float) (armLength / 2.0);
 				for (int armNumber = 0; armNumber < 12; armNumber++) {
-					this.ledBars.add(new LEDBar(transform,
+					ArrayList<LEDBar> thisArmsBars = new ArrayList<LEDBar>();
+					float theta = (float) (360.0 / armNumber);
+					thisArmsBars.add(new LEDBar(transform,
 							spaceBetweenLeds * 0, 360 / armNumber, pusherMac,
 							stripNo, pixelNo++));
-					this.ledBars.add(new LEDBar(transform,
+					thisArmsBars.add(new LEDBar(transform,
 							spaceBetweenLeds * 1, 360 / armNumber, pusherMac,
 							stripNo, pixelNo++));
+					this.ledBars.addAll(thisArmsBars);
+					this.treeArms.add(new TreeArm(armNumber, thisArmsBars,
+							theta));
 				}
 				break;
 			default:
